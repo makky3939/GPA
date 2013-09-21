@@ -1,4 +1,4 @@
-var Visualizer4GPA = (function(){
+(function(){
 
 var inEle      = $('div.input');
 var outEle     = $('div.out');
@@ -57,6 +57,7 @@ for (var i=0; i<files.length; i++) {
 		}
 		
         reader.onload = function(e){
+		console.log(parse2array(e.target.result));
 			var gpa = totalizationCSV(e.target.result,  barChartData);
 					  totalizationCSV(e.target.result,radarChartData);
 
@@ -144,7 +145,28 @@ function CalculationGPA(data){
 }
  
 _init();
-  
-return 0;
 
-}());
+function parse2array(csv){
+	var csv_lines = csv.split(/\r\n|\r|\n/);
+
+	for(var i in csv_lines){
+		csv_lines[i] = csv_lines[i].split(',');
+
+		for(var j in csv_lines[i]){
+			csv_lines[i][j] = csv_lines[i][j].slice(1, -1);			
+		}
+
+	}
+
+	csv_lines.pop();
+
+	return csv_lines;
+}
+
+
+  
+})();
+
+
+
+
