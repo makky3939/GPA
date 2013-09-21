@@ -57,7 +57,13 @@ for (var i=0; i<files.length; i++) {
 		}
 		
         reader.onload = function(e){
-		console.log(parse2array(e.target.result));
+		
+		var data = parse2array(e.target.result);
+		
+		console.log(data[0].indexOf("単位数"));
+		console.log(data[0].indexOf("総合評価"));
+		
+		
 			var gpa = totalizationCSV(e.target.result,  barChartData);
 					  totalizationCSV(e.target.result,radarChartData);
 
@@ -162,6 +168,8 @@ function parse2array(csv){
 
 	return csv_lines;
 }
+
+
 
 
   
